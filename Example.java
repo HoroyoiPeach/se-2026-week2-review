@@ -12,12 +12,12 @@ public class Example {
     public String reverse(String str, List<String> list) {
         if(list == null)
             list = new ArrayList<>();
-        if (str.length() < 0) {  
+        if (str.length() <= 0) { //기존 조건식: if (str.length() < 0)
             StringBuffer sb = new StringBuffer();
             for (String s : list) {
                 sb.append(s);
             }
-            return sb.toString();          
+            return sb.toString();
             
         }
         list.add(str.substring(str.length()-1));
