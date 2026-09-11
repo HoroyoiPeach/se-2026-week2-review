@@ -10,7 +10,7 @@ public class Example {
     }
 
     public String reverse(String str, List<String> list) {
-        // null 문자열은 역순으로 변환할 수 없으므로 명확한 예외를 발생시킨다.
+        // null 입력은 역순으로 변환할 수 없으므로 명확한 예외를 발생시킨다.
         if (str == null) {
             throw new IllegalArgumentException("str must not be null");
         }
