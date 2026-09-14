@@ -5,8 +5,42 @@ public class Example {
 
     public static void main(String[] args) {
         Example e = new Example();
-        String s = e.reverse("abc", new ArrayList<>());        
-        System.out.println(s);        
+        checkResult("normal input", "cba", e.reverse("abc", new ArrayList<>()));
+        checkResult("empty input", "", e.reverse("", new ArrayList<>()));
+        checkResult("null list", "cba", e.reverse("abc", null));
+        checkNullInput(e);
+        checkListContainingNull(e);
+
+        System.out.println("All reverse() tests passed.");
+    }
+
+    private static void checkResult(String testName, String expected, String actual) {
+        if (!expected.equals(actual)) {
+            throw new AssertionError(
+                testName + ": expected " + expected + ", but was " + actual
+            );
+        }
+    }
+
+    private static void checkNullInput(Example e) {
+        try {
+            e.reverse(null, new ArrayList<>());
+            throw new AssertionError("null input: IllegalArgumentException was not thrown");
+        } catch (IllegalArgumentException expected) {
+            // Expected exception
+        }
+    }
+
+    private static void checkListContainingNull(Example e) {
+        List<String> list = new ArrayList<>();
+        list.add(null);
+
+        try {
+            e.reverse("abc", list);
+            throw new AssertionError("list containing null: IllegalArgumentException was not thrown");
+        } catch (IllegalArgumentException expected) {
+            // Expected exception
+        }
     }
 
     public String reverse(String str, List<String> list) {
@@ -25,9 +59,8 @@ public class Example {
                 sb.append(s);
             }
             return sb.toString();
-            
         }
-        list.add(str.substring(str.length()-1));
-        return reverse(str.substring(0, str.length()-1), list);            
+        list.add(str.substring(str.length() - 1));
+        return reverse(str.substring(0, str.length() - 1), list);
     }
 }
