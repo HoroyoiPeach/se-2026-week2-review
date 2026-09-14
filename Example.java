@@ -14,8 +14,11 @@ public class Example {
         if (str == null) {
             throw new IllegalArgumentException("str must not be null");
         }
-        if(list == null)
+        if (list == null) {
             list = new ArrayList<>();
+        } else if (list.contains(null)) {
+            throw new IllegalArgumentException("list must not contain null");
+        }
         if (str.length() <= 0) { //기존 조건식: if (str.length() < 0)
             StringBuffer sb = new StringBuffer();
             for (String s : list) {
